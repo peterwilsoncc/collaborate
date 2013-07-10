@@ -21,5 +21,10 @@ Collaborate - A WordPress starter theme
 3. Full Width
 4. Landing Page
 
+#Widget Areas
+1. Header Widget Area
+2. Main Sidebar Widget Area
+3. Footer Widget Area
+
 #More Info
 For more information please visit the [Collaborate Wiki](https://github.com/peterwilsoncc/collaborate/wiki)
