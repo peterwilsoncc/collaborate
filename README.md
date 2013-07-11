@@ -1,6 +1,13 @@
 Collaborate - A WordPress starter theme
 =======================================
 
+#A note about pull requests
+
+This theme is being developed by @BronsonQuick and @peterwilsoncc.
+
+We've decided to develop it publically, but will not be accepting
+pull requests at this time.
+
 #Goals
 - To pass both the WordPress.org theme guidelines and the ThemeForest guidelines
 - To be semantic html5
