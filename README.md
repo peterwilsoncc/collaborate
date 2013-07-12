@@ -3,7 +3,8 @@ Collaborate - A WordPress starter theme
 
 #A note about pull requests
 
-This theme is being developed by @BronsonQuick and @peterwilsoncc.
+This theme is being developed by [Bronson Quick](https://github.com/BronsonQuick)
+and [Peter Wilson](https://github.com/peterwilsoncc).
 
 We've decided to develop it publically, but will not be accepting
 pull requests at this time.
