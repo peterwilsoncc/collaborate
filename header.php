@@ -14,3 +14,16 @@
 	<?php wp_head(); ?>
 </head>
 <body>
+<div class="hfeed site">
+	<header role="banner">
+
+		<hgroup>
+			<h1><?php bloginfo( 'name' ); ?></h1>
+			<h2><?php bloginfo( 'description' ); ?></h2>
+		</hgroup>
+
+		<nav role="navigation">
+			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+		</nav>
+
+	</header>
