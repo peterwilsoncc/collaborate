@@ -92,7 +92,7 @@ function collaborate_widgets_init() {
 
 	register_sidebar( array(
 		'name' => __( 'Footer Widget Area', 'collaborate' ),
-		'id' => 'footer-widget',
+		'id' => 'footer-widget-area',
 		'description' => __( 'The widget area in the footer', 'collaborate' ),
 		'before_widget' => '<div id="%1$s" class="widget widget--footer %2$s">',
 		'after_widget' => "</div>",
