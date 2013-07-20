@@ -74,9 +74,9 @@ function collaborate_widgets_init() {
 		'name' => __( 'Header Widget Area', 'collaborate' ),
 		'id' => 'header-widget-area',
 		'description' => __( 'Appears in the header of the theme', 'collaborate' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '<div id="%1$s" class="widget widget--header %2$s">',
 		'after_widget' => '</div>',
-		'before_title' => '<span class="widget-title">',
+		'before_title' => '<span class="widget__title">',
 		'after_title' => '</span>',
 	) );
 
@@ -84,9 +84,9 @@ function collaborate_widgets_init() {
 		'name' => __( 'Main Sidebar', 'collaborate' ),
 		'id' => 'main-sidebar',
 		'description' => __( 'Appears on posts and pages', 'collaborate' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget widget--sidebar %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
+		'before_title' => '<h3 class="widget__title">',
 		'after_title' => '</h3>',
 	) );
 
@@ -94,9 +94,9 @@ function collaborate_widgets_init() {
 		'name' => __( 'Footer Widget Area', 'collaborate' ),
 		'id' => 'footer-widget',
 		'description' => __( 'The widget area in the footer', 'collaborate' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '<div id="%1$s" class="widget widget--footer %2$s">',
 		'after_widget' => "</div>",
-		'before_title' => '<h3 class="widget-title">',
+		'before_title' => '<h3 class="widget__title">',
 		'after_title' => '</h3>',
 	) );
 
