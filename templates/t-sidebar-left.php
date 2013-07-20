@@ -3,5 +3,6 @@
  * Template Name: Sidebar Left
  */
 ?>
-<?php get_header(); ?>
-<?php get_footer(); ?>
+<?php
+get_template_part( 'includes/singular' );
+?>
