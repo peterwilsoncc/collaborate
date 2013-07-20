@@ -13,8 +13,7 @@
 	<![endif]-->
 	<?php wp_head(); ?>
 </head>
-<body>
-<div class="hfeed site">
+<body class="hfeed">
 	<header role="banner">
 
 		<hgroup>
