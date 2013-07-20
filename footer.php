@@ -6,6 +6,10 @@
 		echo '</div>';
 	endif;
 	?>
+	
+	<div class="colophon" role="contentinfo">
+		<p><?php printf( __( 'Copyright &copy; %s', 'collaborate' ), get_bloginfo( 'name' ) ); ?></p>
+	</div>
 </footer>
 <?php wp_footer(); ?>
 </body>
