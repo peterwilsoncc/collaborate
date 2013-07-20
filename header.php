@@ -36,6 +36,12 @@
 				echo $primary_nav;
 				echo '</nav>';
 			endif; 
+
+			if ( is_active_sidebar( 'header-widget-area' ) ) :
+				echo '<div class="widgetized widgetized--header">';
+				dynamic_sidebar( 'header-widget-area' );
+				echo '</div>';
+			endif;
 		?>
 		
 	</header>
