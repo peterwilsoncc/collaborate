@@ -21,8 +21,21 @@
 			<p class="site__strap-line"><?php bloginfo( 'description' ); ?></p>
 		</div>
 
-		<nav role="navigation">
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav>
+		<?php 
+			$primary_nav = wp_nav_menu( array( 
+				'theme_location' => 'primary',
+				'container' => false,
+				'menu_class' => 'nav primary-nav',
+				'fallback_cb' => false,
+				'depth' => 3,
+				'echo' => 0
+			) );
 
+			if ( $primary_nav ) :
+				echo '<nav role="navigation">';
+				echo $primary_nav;
+				echo '</nav>';
+			endif; 
+		?>
+		
 	</header>
