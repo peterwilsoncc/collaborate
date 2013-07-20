@@ -16,10 +16,10 @@
 <body class="hfeed">
 	<header role="banner">
 
-		<hgroup>
-			<h1><?php bloginfo( 'name' ); ?></h1>
-			<h2><?php bloginfo( 'description' ); ?></h2>
-		</hgroup>
+		<div class="site">
+			<h1 class="site__name"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+			<p class="site__strap-line"><?php bloginfo( 'description' ); ?></p>
+		</div>
 
 		<nav role="navigation">
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
