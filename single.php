@@ -1,3 +1,2 @@
 <?php
-get_template_part( 'includes/singular' );
-?>
+get_template_part( 'parts/singular' );
