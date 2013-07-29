@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Registers our global scope
  *
@@ -35,6 +33,8 @@ if ( ! console ) {
  * @since Collaborate 1.0
  */
 COLLABORATE.base = function ( window, document, COLLABORATE, $ ) {
+	"use strict";
+
 	var html = document.documentElement,
 		body = document.body;
 
