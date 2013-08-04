@@ -3,7 +3,7 @@
  *
  * @since Collaborate 1.0
  */
-if ( ! COLLABORATE ) { 
+if ( ! this.COLLABORATE ) { 
 	var COLLABORATE = {};
 }
 
@@ -13,9 +13,10 @@ if ( ! COLLABORATE ) {
  *
  * @since Collaborate 1.0
  */
-if ( ! console ) {
+if ( ! this.console ) {
 	var console = {};
 	console.log = console.error = function(){
+		"use strict";
 		return;
 	};
 }
@@ -38,7 +39,7 @@ COLLABORATE.base = function ( window, document, COLLABORATE, $ ) {
 	var html = document.documentElement,
 		body = document.body;
 
-}
+};
 
 /**
  * Initialise base functions, pass jQuery if it exists.
