@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <div class="content">
 	<main role="main" class="main">
 		<!-- loop goes here -->
@@ -13,5 +11,3 @@
 	endif;
 	?>
 </div>
-
-<?php get_footer(); ?>
