@@ -113,9 +113,7 @@ if ( ! function_exists( 'collaborate_widgets_init' ) ) {
 }
 
 /**
- * Enqueue Sizzle into our theme. If you want to use jQuery then add:
- * remove_action( 'wp_enqueue_scripts', 'collaborate_enqueue_scripts' ); to your child theme
- *
+ * Enqueue Sizzle into our theme in a pluggable function
  * @since Collaborate 1.0
  */
 if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
