@@ -22,46 +22,53 @@
  * @since Collaborate 0.1
  */
 
-/**
- * Sets up theme defaults and registers the various WordPress features that
- * Collaborate supports.
- *
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_editor_style() To add a Visual Editor stylesheet.
- * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
- * 	custom background, and post formats.
- * @uses register_nav_menu() To add support for navigation menus.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since Collaborate 1.0
- */
-function collaborate_setup() {
-	/*
-	 * Makes Collaborate available for translation.
-	 *
-	 * Translations can be added to the /languages/ directory.
-	 * If you're building a theme based on Collaborate, use a find and replace
-	 * to change 'collaborate' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'collaborate', get_template_directory() . '/languages' );
-
-	// This theme styles the visual editor with editor-style.css to match the theme style.
-	add_editor_style();
-
-	// Adds RSS feed links to <head> for posts and comments.
-	add_theme_support( 'automatic-feed-links' );
-
-	// This theme supports a variety of post formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu', 'collaborate' ) );
-
-	// This theme uses a custom image size for featured images, displayed on "standard" posts.
-	add_theme_support( 'post-thumbnails' );
-
-}
+// Get things started with hour pluggable theme setup
 add_action( 'after_setup_theme', 'collaborate_setup' );
+
+if ( ! function_exists( 'collaborate_setup' ) ) {
+	/**
+	 * Sets up theme defaults and registers the various WordPress features that
+	 * Collaborate supports.
+	 *
+	 * @uses load_theme_textdomain() For translation/localization support.
+	 * @uses add_editor_style() To add a Visual Editor stylesheet.
+	 * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
+	 * 	custom background, and post formats.
+	 * @uses register_nav_menu() To add support for navigation menus.
+	 * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
+	 *
+	 * @since Collaborate 1.0
+	 */
+	function collaborate_setup() {
+		/*
+		 * Makes Collaborate available for translation.
+		 *
+		 * Translations can be added to the /languages/ directory.
+		 * If you're building a theme based on Collaborate, use a find and replace
+		 * to change 'collaborate' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'collaborate', get_template_directory() . '/languages' );
+
+		// This theme styles the visual editor with editor-style.css to match the theme style.
+		add_editor_style();
+
+		// Adds RSS feed links to <head> for posts and comments.
+		add_theme_support( 'automatic-feed-links' );
+
+		// This theme supports a variety of post formats.
+		add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menu( 'primary', __( 'Primary Menu', 'collaborate' ) );
+
+		// This theme uses a custom image size for featured images, displayed on "standard" posts.
+		add_theme_support( 'post-thumbnails' );
+
+		//Add our filters & actions for our pluggable functions here
+		add_action( 'wp_enqueue_scripts', 'collaborate_enqueue_scripts' );
+
+	}
+}
 
 /**
  * Registers our main widget area and the front page widget areas.
@@ -102,3 +109,15 @@ function collaborate_widgets_init() {
 
 }
 add_action( 'widgets_init', 'collaborate_widgets_init' );
+
+/**
+ * Enqueue Sizzle into our theme. If you want to use jQuery then add:
+ * remove_action( 'wp_enqueue_scripts', 'collaborate_enqueue_scripts' ); to your child theme
+ *
+ * @since Collaborate 1.0
+ */
+if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
+	function collaborate_enqueue_scripts() {
+		wp_enqueue_script( 'sizzle', get_template_directory_uri() . '/assets/js/sizzle.min.js' , array(), '1.10.8-pre', true );
+	}
+}
