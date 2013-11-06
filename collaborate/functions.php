@@ -118,6 +118,12 @@ if ( ! function_exists( 'collaborate_widgets_init' ) ) {
  */
 if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
 	function collaborate_enqueue_scripts() {
-		wp_enqueue_script( 'sizzle', get_template_directory_uri() . '/assets/js/sizzle.min.js' , array(), '1.10.8-pre', true );
+		wp_enqueue_script( 
+			'collaborate_sizzle', 
+			get_template_directory_uri() . '/assets/js/sizzle.min.js' , 
+			array(), 
+			'1.10.8-pre', 
+			true
+		);
 	}
 }
