@@ -121,3 +121,8 @@ if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
 		wp_enqueue_script( 'sizzle', get_template_directory_uri() . '/assets/js/sizzle.min.js' , array(), '1.10.8-pre', true );
 	}
 }
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';

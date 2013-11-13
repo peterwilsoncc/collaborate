@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * @package WordPress
+ * @subpackage Collaborate
+ * @since Collaborate 0.1
+ */
+?>
 <footer class="footer foot">
 	<?php
 	if ( is_active_sidebar( 'footer-widget-area' ) ) :
