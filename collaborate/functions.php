@@ -128,7 +128,7 @@ if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
 		wp_enqueue_script( 
 			'collaborate_crane', 
 			get_template_directory_uri() . '/assets/js/crane.min.js' , 
-			array( 'sizzle' ), 
+			array( 'collaborate_sizzle' ),
 			'0.5', 
 			true
 		);
