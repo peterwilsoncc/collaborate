@@ -88,19 +88,19 @@ endif;
  * Returns true if a blog has more than 1 category
  */
 function collaborate_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'all_the_cool_cats' ) ) ) {
+	if ( false === ( $collaborate_all_the_categories = get_transient( 'collaborate_all_the_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts
-		$all_the_cool_cats = get_categories( array(
+		$collaborate_all_the_categories = get_categories( array(
 			'hide_empty' => 1,
 		) );
 
 		// Count the number of categories that are attached to the posts
-		$all_the_cool_cats = count( $all_the_cool_cats );
+		$collaborate_all_the_categories = count( $collaborate_all_the_categories );
 
-		set_transient( 'all_the_cool_cats', $all_the_cool_cats );
+		set_transient( 'collaborate_all_the_categories', $collaborate_all_the_categories );
 	}
 
-	if ( '1' != $all_the_cool_cats ) {
+	if ( '1' != $collaborate_all_the_categories ) {
 		// This blog has more than 1 category so collaborate_categorized_blog should return true
 		return true;
 	} else {
@@ -114,7 +114,7 @@ function collaborate_categorized_blog() {
  */
 function collaborate_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'all_the_cool_cats' );
+	delete_transient( 'collaborate_all_the_categories' );
 }
 add_action( 'edit_category', 'collaborate_category_transient_flusher' );
 add_action( 'save_post',     'collaborate_category_transient_flusher' );
