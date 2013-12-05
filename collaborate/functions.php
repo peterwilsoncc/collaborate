@@ -134,3 +134,8 @@ if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
 		);
 	}
 }
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';

@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+/**
+ * The Header template for our theme
+ *
+ * Displays all of the <head> section and everything up till <main>
+ *
+ * @package WordPress
+ * @subpackage Collaborate
+ * @since Collaborate 0.1
+ */
+?><!DOCTYPE html>
 <html <?php body_class( 'no-js' ); ?> <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
