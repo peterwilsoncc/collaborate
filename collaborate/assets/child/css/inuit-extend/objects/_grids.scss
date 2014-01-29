@@ -1,0 +1,66 @@
+@if $use-grids == true{
+
+/*------------------------------------*\
+    $GRIDS
+\*------------------------------------*/
+/**
+ * Fluid and nestable grid system, e.g.:
+ *
+   <div class="grid">
+
+       <div class="grid__item  one-third">
+           <p>One third grid</p>
+       </div><!--
+
+    --><div class="grid__item  two-thirds">
+           <p>Two thirds grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-half">
+           <p>One half grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div>
+
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/CLYUC
+ *
+ */
+
+
+/**
+ * Grid wrapper
+ */
+.grid{
+	margin-left: 0;
+    padding-left:$half-spacing-unit;
+    padding-right:$half-spacing-unit;
+}
+
+
+    /**
+     * Very infrequently occuring grid wrappers as children of grid wrappers.
+     */
+    .grid > .grid{
+		margin-left:0;
+		padding-left: 0;
+		padding-right: 0;
+    }
+
+
+    /**
+     * Grid
+     */
+    .grid__item{
+        padding-left:$half-spacing-unit;
+        padding-right:$half-spacing-unit;
+    }
+
+}//endif
