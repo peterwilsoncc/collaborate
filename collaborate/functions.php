@@ -60,7 +60,7 @@ if ( ! function_exists( 'collaborate_setup' ) ) {
 
 		// To use these optional features simple uncomment them
 		// add_theme_support( 'collaborate-html-tidy' );
-		// add_theme_support( 'bem' );
+		// add_theme_support( 'collaborate-bem' );
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menu( 'primary', __( 'Primary Menu', 'collaborate' ) );
@@ -154,7 +154,7 @@ if ( ! function_exists( 'collaborate_check_theme_support' ) ) {
 			require get_template_directory() . '/inc/html-tidy.php';
 		}
 
-		if ( current_theme_supports( 'bem' ) ) {
+		if ( current_theme_supports( 'collaborate-bem' ) ) {
 			require get_template_directory() . '/inc/bem.php';
 		}
 
