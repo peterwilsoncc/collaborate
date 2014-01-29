@@ -8,7 +8,7 @@
  */
 
 if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
-	function collaborate_filter_body_class( $classes ){
+	function collaborate_filter_body_class( $classes, $custom_classes ){
 
 		$post_id = get_the_ID();
 
@@ -40,7 +40,14 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 			$classes[] = 'admin-bar';
 		}
 
-		return $classes;
+		if ( ! empty( $custom_classes ) ) {
+			if ( ! is_array( $custom_classes ) ) {
+				$custom_classes = preg_split( '#\s+#', $custom_classes );
+			}
+			$classes = array_merge( $classes, $custom_classes );
+		}
+
+		return array_unique( $classes );
 	}
 
 	add_filter( 'body_class', 'collaborate_filter_body_class', 10, 2 );
