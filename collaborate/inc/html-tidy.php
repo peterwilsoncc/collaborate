@@ -12,7 +12,7 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 
 		$post_id = get_the_ID();
 
-		//avoid putting in too many
+		// Remove all the WordPress body classes
 		unset( $classes );
 		$classes = array();
 
@@ -39,7 +39,6 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 		if ( is_admin_bar_showing() ) {
 			$classes[] = 'admin-bar';
 		}
-
 
 		return $classes;
 	}
