@@ -58,6 +58,10 @@ if ( ! function_exists( 'collaborate_setup' ) ) {
 		// This theme supports a variety of post formats.
 		add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
 
+		// To use these optional features simple uncomment them
+		// add_theme_support( 'collaborate-html-tidy' );
+		// add_theme_support( 'collaborate-bem' );
+
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menu( 'primary', __( 'Primary Menu', 'collaborate' ) );
 
@@ -139,3 +143,21 @@ if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Add a function to check for theme support for tidying WordPress HTML and/or BEMifying the CSS classes
+ * @since Collaborate 1.0
+ */
+if ( ! function_exists( 'collaborate_check_theme_support' ) ) {
+	function collaborate_check_theme_support(){
+		if ( current_theme_supports( 'collaborate-html-tidy' ) ) {
+			require get_template_directory() . '/inc/html-tidy.php';
+		}
+
+		if ( current_theme_supports( 'collaborate-bem' ) ) {
+			require get_template_directory() . '/inc/bem.php';
+		}
+
+	}
+	add_action( 'init', 'collaborate_check_theme_support' );
+}
