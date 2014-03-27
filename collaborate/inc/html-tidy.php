@@ -53,3 +53,57 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 	add_filter( 'body_class', 'collaborate_filter_body_class', 10, 2 );
 
 }
+
+/**
+ * Let's remove some of the nav_menu_css_class classes we don't need.
+ */
+
+if ( ! function_exists( 'collaborate_filter_menu_class' ) ) {
+	function collaborate_filter_menu_class( $classes, $item, $args ){
+
+		if ( in_array( 'menu-item-ancestor', $classes ) ) {
+			unset ( $classes );
+    		$classes[] = 'menu-item-ancestor';
+		} else {
+			unset ( $classes );
+		}
+
+		$custom_classes = get_post_meta($item->ID, '_menu_item_classes');
+
+		if ( is_array( $custom_classes[0] ) ) {
+			$custom_classes = $custom_classes[0];
+		}
+
+		foreach ( $custom_classes as $class ) {
+			if ( trim( $class ) != '' ) {
+				$classes[] = sanitize_html_class( $class );
+			}
+		}
+
+		$classes[] = 'menu-item';
+
+		if ( $item->current || $item->current_item_ancestor || $item->current_item_parent ) {
+			$classes[] = 'menu-item-active';
+		}
+
+		return array_unique( $classes );
+	}
+
+	add_filter( 'nav_menu_css_class', 'collaborate_filter_menu_class', 8, 3 );
+}
+
+/**
+ * We need to filter so we can replace WordPress default menu-item-has-children
+ */
+if ( ! function_exists( 'collaborate_filter_nav_menu_objects' ) ) {
+	function collaborate_filter_nav_menu_objects( $sorted_menu_items, $args ) {
+
+		foreach ( $sorted_menu_items as $menu ) {
+			$menu->classes = str_replace( 'menu-item-has-children', 'menu-item-ancestor', $menu->classes );
+		}
+
+		return $sorted_menu_items;
+	}
+
+	add_filter( 'wp_nav_menu_objects', 'collaborate_filter_nav_menu_objects', 8, 2 );
+}
