@@ -32,8 +32,12 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 				$classes[] = 'all_blog';
 			}
 		}
+
 		if ( is_page_template() ) {
-			$classes[] = 'page-template-' . sanitize_html_class( str_replace( '.', '-', get_post_meta( $post_id, '_wp_page_template', true ) ), '' );
+			$template_name = get_post_meta( $post_id, '_wp_page_template', true );
+			$template_name = preg_replace( '#([\w\d]+)\/#', '', $template_name );
+			$template_name = str_replace( '.php', '', $template_name );
+			$classes[] = $template_name;
 		}
 
 		if ( is_admin_bar_showing() ) {
@@ -50,6 +54,6 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 		return array_unique( $classes );
 	}
 
-	add_filter( 'body_class', 'collaborate_filter_body_class', 10, 2 );
+	add_filter( 'body_class', 'collaborate_filter_body_class', 8, 2 );
 
 }
