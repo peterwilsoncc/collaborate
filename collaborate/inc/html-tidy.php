@@ -55,6 +55,46 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 }
 
 /**
+ * Let's remove some of the nav_menu_css_class classes we don't need.
+ */
+
+if ( ! function_exists( 'collaborate_filter_menu_class' ) ) {
+	function collaborate_filter_menu_class( $classes, $item, $args ){
+
+		unset ( $classes );
+		$classes = array();
+
+		$custom_classes = get_post_meta( $item->ID, '_menu_item_classes' );
+
+		if ( is_array( $custom_classes[0] ) ) {
+			$custom_classes = $custom_classes[0];
+		}
+
+		foreach ( $custom_classes as $class ) {
+			if ( trim( $class ) != '' ) {
+				$classes[] = sanitize_html_class( $class );
+			}
+		}
+
+		$classes[] = 'menu-item';
+
+		// varient added to the current item's parents
+		if ( $item->current_item_ancestor || $item->current_item_parent ) {
+			$classes[] = 'menu-item-ancestor';
+		}
+		
+		// varient added to the current item only
+		if ( $item->current ) {
+			$classes[] = 'menu-item-active';
+		}
+
+		return array_unique( $classes );
+	}
+
+	add_filter( 'nav_menu_css_class', 'collaborate_filter_menu_class', 8, 3 );
+}
+
+/**
  * Let's remove some of the comment_class classes we don't need.
  */
 if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
