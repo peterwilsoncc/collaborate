@@ -89,10 +89,10 @@ if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
 		}
 
 
-		if ( !empty($class) ) {
-			if ( !is_array( $class ) )
-				$class = preg_split('#\s+#', $class);
-			$classes = array_merge($classes, $class);
+		if ( !empty($custom_classes) ) {
+			if ( !is_array( $custom_classes ) )
+				$custom_classes = preg_split('#\s+#', $custom_classes);
+			$classes = array_merge($classes, $custom_classes);
 		}
 
 		$classes = array_map('esc_attr', $classes);
