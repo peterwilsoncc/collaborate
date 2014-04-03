@@ -89,7 +89,46 @@ if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
 		}
 
 
-		if ( ! empty( $custom_classes ) ) {
+		if ( ! empty($custom_classes) ) {
+			if ( ! is_array( $custom_classes ) )
+				$custom_classes = preg_split( '#\s+#', $custom_classes );
+			$classes = array_merge( $classes, $custom_classes );
+		}
+
+		$classes = array_map( 'esc_attr', $classes );
+
+		return $classes;
+	}
+	add_filter( 'post_class', 'collaborate_filter_post_class', 8, 3 );
+}
+
+/**
+ * Let's remove some of the post_class classes we don't need.
+ */
+if ( ! function_exists( 'collaborate_filter_post_class' ) ) {
+	function collaborate_filter_post_class( $classes, $custom_classes, $post_id ) {
+		$post = get_post( $post_id );
+
+		// Remove all the WordPress post classes
+		unset( $classes );
+		$classes = array();
+
+		$classes[] = 'hentry';
+
+		$classes[] = $post->post_type;
+		
+		// Post Format
+		if ( post_type_supports( $post->post_type, 'post-formats' ) ) {
+			$post_format = get_post_format( $post->ID );
+
+			if ( $post_format && ! is_wp_error( $post_format ) )
+				$classes[] = 'format-' . sanitize_html_class( $post_format );
+			else
+				$classes[] = 'format-standard';
+		}
+
+
+		if ( ! empty($custom_classes) ) {
 			if ( ! is_array( $custom_classes ) )
 				$custom_classes = preg_split( '#\s+#', $custom_classes );
 			$classes = array_merge( $classes, $custom_classes );
