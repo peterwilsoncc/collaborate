@@ -59,7 +59,7 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
  */
 if ( ! function_exists( 'collaborate_filter_post_class' ) ) {
 	function collaborate_filter_post_class( $classes, $custom_classes, $post_id ) {
-		$post = get_post($post_id);
+		$post = get_post( $post_id );
 
 		// Remove all the WordPress post classes
 		unset( $classes );
@@ -73,20 +73,20 @@ if ( ! function_exists( 'collaborate_filter_post_class' ) ) {
 		if ( post_type_supports( $post->post_type, 'post-formats' ) ) {
 			$post_format = get_post_format( $post->ID );
 
-			if ( $post_format && !is_wp_error($post_format) )
+			if ( $post_format && ! is_wp_error( $post_format ) )
 				$classes[] = 'format-' . sanitize_html_class( $post_format );
 			else
 				$classes[] = 'format-standard';
 		}
 
 
-		if ( !empty($custom_classes) ) {
-			if ( !is_array( $custom_classes ) )
-				$custom_classes = preg_split('#\s+#', $custom_classes);
-			$classes = array_merge($classes, $custom_classes);
+		if ( ! empty($custom_classes) ) {
+			if ( ! is_array( $custom_classes ) )
+				$custom_classes = preg_split( '#\s+#', $custom_classes );
+			$classes = array_merge( $classes, $custom_classes );
 		}
 
-		$classes = array_map('esc_attr', $classes);
+		$classes = array_map( 'esc_attr', $classes );
 
 		return $classes;
 	}
