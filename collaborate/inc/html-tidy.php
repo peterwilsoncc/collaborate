@@ -61,14 +61,10 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 if ( ! function_exists( 'collaborate_filter_menu_class' ) ) {
 	function collaborate_filter_menu_class( $classes, $item, $args ){
 
-		if ( in_array( 'menu-item-ancestor', $classes ) ) {
-			unset ( $classes );
-    		$classes[] = 'menu-item-ancestor';
-		} else {
-			unset ( $classes );
-		}
+		unset ( $classes );
+		$classes = array();
 
-		$custom_classes = get_post_meta($item->ID, '_menu_item_classes');
+		$custom_classes = get_post_meta( $item->ID, '_menu_item_classes' );
 
 		if ( is_array( $custom_classes[0] ) ) {
 			$custom_classes = $custom_classes[0];
@@ -82,7 +78,13 @@ if ( ! function_exists( 'collaborate_filter_menu_class' ) ) {
 
 		$classes[] = 'menu-item';
 
-		if ( $item->current || $item->current_item_ancestor || $item->current_item_parent ) {
+		// varient added to the current item's parents
+		if ( $item->current_item_ancestor || $item->current_item_parent ) {
+			$classes[] = 'menu-item-ancestor';
+		}
+		
+		// varient added to the current item only
+		if ( $item->current ) {
 			$classes[] = 'menu-item-active';
 		}
 
@@ -90,22 +92,6 @@ if ( ! function_exists( 'collaborate_filter_menu_class' ) ) {
 	}
 
 	add_filter( 'nav_menu_css_class', 'collaborate_filter_menu_class', 8, 3 );
-}
-
-/**
- * We need to filter so we can replace WordPress default menu-item-has-children
- */
-if ( ! function_exists( 'collaborate_filter_nav_menu_objects' ) ) {
-	function collaborate_filter_nav_menu_objects( $sorted_menu_items, $args ) {
-
-		foreach ( $sorted_menu_items as $menu ) {
-			$menu->classes = str_replace( 'menu-item-has-children', 'menu-item-ancestor', $menu->classes );
-		}
-
-		return $sorted_menu_items;
-	}
-
-	add_filter( 'wp_nav_menu_objects', 'collaborate_filter_nav_menu_objects', 8, 2 );
 }
 
 /**
