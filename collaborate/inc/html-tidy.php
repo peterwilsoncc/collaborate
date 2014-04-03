@@ -60,8 +60,8 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
 	function collaborate_filter_comment_class( $classes, $custom_classes, $comment_id, $post_id ) {
 		global $comment_alt, $comment_depth, $comment_thread_alt;
-		$comment = get_comment($comment_id);
-		$post = get_post($post_id);
+		$comment = get_comment( $comment_id );
+		$post = get_post( $post_id );
 
 		// Remove all the WordPress comment classes
 		unset( $classes );
@@ -89,13 +89,13 @@ if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
 		}
 
 
-		if ( !empty($custom_classes) ) {
-			if ( !is_array( $custom_classes ) )
-				$custom_classes = preg_split('#\s+#', $custom_classes);
-			$classes = array_merge($classes, $custom_classes);
+		if ( ! empty( $custom_classes ) ) {
+			if ( ! is_array( $custom_classes ) )
+				$custom_classes = preg_split( '#\s+#', $custom_classes );
+			$classes = array_merge( $classes, $custom_classes );
 		}
 
-		$classes = array_map('esc_attr', $classes);
+		$classes = array_map( 'esc_attr', $classes );
 
 		return $classes;
 	}
