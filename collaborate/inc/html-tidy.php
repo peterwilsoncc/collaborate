@@ -53,3 +53,52 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 	add_filter( 'body_class', 'collaborate_filter_body_class', 10, 2 );
 
 }
+
+/**
+ * Let's remove some of the comment_class classes we don't need.
+ */
+if ( ! function_exists( 'collaborate_filter_comment_class' ) ) {
+	function collaborate_filter_comment_class( $classes, $custom_classes, $comment_id, $post_id ) {
+		global $comment_alt, $comment_depth, $comment_thread_alt;
+		$comment = get_comment($comment_id);
+		$post = get_post($post_id);
+
+		// Remove all the WordPress comment classes
+		unset( $classes );
+		$classes = array();
+
+		$classes[] = 'comment';
+
+		// If the comment author has an id (registered), then print the log in name
+		if ( $comment->user_id > 0 && $post && ( $comment->user_id === $post->post_author ) ) {
+			// For comment authors who are the author of the post
+			$classes[] = 'bypostauthor';
+		}
+
+		// $comment_alt has been increased by the filter runs
+		if ( ! ( $comment_alt % 2 ) ) {
+			$classes[] = 'alt';
+		}
+
+		// Alt for top-level comments
+		// $comment_thread_alt has been increased by the time the filter runs
+		if ( 1 == $comment_depth ) {
+			if ( ! ( $comment_thread_alt % 2 ) ) {
+				$classes[] = 'thread-alt';
+			}
+		}
+
+
+		if ( !empty($class) ) {
+			if ( !is_array( $class ) )
+				$class = preg_split('#\s+#', $class);
+			$classes = array_merge($classes, $class);
+		}
+
+		$classes = array_map('esc_attr', $classes);
+
+		return $classes;
+	}
+
+	add_filter( 'comment_class', 'collaborate_filter_comment_class', 8, 4 );
+}
