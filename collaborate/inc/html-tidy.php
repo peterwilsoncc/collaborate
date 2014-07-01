@@ -7,31 +7,14 @@
  * Let's remove some of the body_class styles we don't need.
  */
 
-if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
-	function collaborate_filter_body_class( $classes, $custom_classes ){
+if ( ! function_exists( 'collaborate_filter_body_class_tidy' ) ) {
+	function collaborate_filter_body_class_tidy( $classes, $custom_classes ){
 
 		$post_id = get_the_ID();
 
 		// Remove all the WordPress body classes
 		unset( $classes );
 		$classes = array();
-
-		if ( is_home() || is_archive() ) {
-			$classes[] = 'list';
-			if ( 'post' == get_post_type() ) {
-				$classes[] = 'all_blog';
-			}
-		}
-		if ( is_search() ) {
-			$classes[] = 'list';
-		}
-		if ( is_singular() || is_404() ) {
-			$classes[] = 'singular';
-
-			if ( ( 'post' == get_post_type() ) || ( 'attachment' == get_post_type() ) ) {
-				$classes[] = 'all_blog';
-			}
-		}
 
 		if ( is_page_template() ) {
 			$template_name = get_post_meta( $post_id, '_wp_page_template', true );
@@ -54,7 +37,7 @@ if ( ! function_exists( 'collaborate_filter_body_class' ) ) {
 		return array_unique( $classes );
 	}
 
-	add_filter( 'body_class', 'collaborate_filter_body_class', 8, 2 );
+	add_filter( 'body_class', 'collaborate_filter_body_class_tidy', 8, 2 );
 
 }
 
