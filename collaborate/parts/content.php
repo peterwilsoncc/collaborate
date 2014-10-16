@@ -64,4 +64,4 @@
 
 		<?php edit_post_link( __( 'Edit', 'collaborate' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->
-</article><!-- #post-## -->
+</article><!-- #post-<?php the_ID(); ?> -->
