@@ -140,6 +140,35 @@ if ( ! function_exists(  'collaborate_enqueue_scripts' ) ) {
 }
 
 /**
+ * Add collaborate classes to filters
+ */
+if ( ! function_exists( 'collaborate_filter_body_class_append' ) ) {
+	function collaborate_filter_body_class_append( $classes ){
+
+		if ( is_home() || is_archive() ) {
+			$classes[] = 'list';
+			if ( 'post' == get_post_type() ) {
+				$classes[] = 'all_blog';
+			}
+		}
+		if ( is_search() ) {
+			$classes[] = 'list';
+		}
+		if ( is_singular() || is_404() ) {
+			$classes[] = 'singular';
+
+			if ( ( 'post' == get_post_type() ) || ( 'attachment' == get_post_type() ) ) {
+				$classes[] = 'all_blog';
+			}
+		}
+
+		return $classes;
+	}
+	add_filter( 'body_class', 'collaborate_filter_body_class_append' );
+}
+
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
